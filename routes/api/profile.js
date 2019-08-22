@@ -57,11 +57,11 @@ router.post(
       status,
       githubusername,
       skills,
-      youtube,
-      facebook,
       twitter,
-      instagram,
-      linkedin
+      facebook,
+      youtube,
+      linkedin,
+      instagram
     } = req.body;
 
     // Build profile object
@@ -79,11 +79,12 @@ router.post(
 
     //Build social object
     profileFields.social = {};
-    if (youtube) profileFields.social.youtube = youtube;
+
     if (facebook) profileFields.social.facebook = facebook;
     if (twitter) profileFields.social.twitter = twitter;
+    if (youtube) profileFields.social.youtube = youtube;
+    if (linkedin) profileFields.social.linkedin = linkedin;
     if (instagram) profileFields.social.instagram = instagram;
-    if (linkedin) profileFields.social.youtube = linkedin;
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
